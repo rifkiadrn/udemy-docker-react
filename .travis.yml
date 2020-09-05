@@ -1,0 +1,11 @@
+language: generic
+# we need super user level permission bcs we make use of docker
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t rifkiadrn/udemy-docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true rifkiadrn/udemy-docker-react npm run test
